@@ -12,6 +12,7 @@ import { ClicktoarrayComponent } from './simple/clicktoarray/clicktoarray.compon
 import { RandomcolorComponent } from './simple/randomcolor/randomcolor.component';
 import { NameavatarComponent } from './simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from './simple/datafromevent/datafromevent.component';
+import { ConcateventsComponent } from './complex/concatevents/concatevents.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DatafromeventComponent } from './simple/datafromevent/datafromevent.com
     ClicktoarrayComponent,
     RandomcolorComponent,
     NameavatarComponent,
-    DatafromeventComponent
+    DatafromeventComponent,
+    ConcateventsComponent
   ],
   imports: [
     BrowserModule,

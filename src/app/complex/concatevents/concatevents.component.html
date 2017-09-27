@@ -1,0 +1,31 @@
+<h4>
+  Event concatenation example!
+</h4>
+<button id="femalesButton">Female</button>
+<button id="malesButton">Male</button>
+<hr style="clear: both">
+<div style="width: 30vw; float: left; text-align: center">
+  <h4>Males</h4>
+  <ul *ngFor="let male of males">
+    <li>
+      {{male.name}}
+    </li>
+  </ul>
+</div>
+<div style="width: 30vw; float: left; text-align: center">
+  <h4>All</h4>
+  <ul *ngFor="let one of all">
+    <li>
+      {{one.name}}
+    </li>
+  </ul>
+</div>
+<div style="width: 30vw; float: left; text-align: center">
+  <h4>Females</h4>
+  <ul *ngFor="let female of females">
+    <li>
+      {{female.name}}
+    </li>
+  </ul>
+</div>
+

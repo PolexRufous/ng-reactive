@@ -9,19 +9,27 @@ import { ClicktoarrayComponent } from '../simple/clicktoarray/clicktoarray.compo
 import { RandomcolorComponent } from '../simple/randomcolor/randomcolor.component';
 import { NameavatarComponent } from '../simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from '../simple/datafromevent/datafromevent.component';
+import { ConcateventsComponent } from '../complex/concatevents/concatevents.component';
 
 const routes = [
   {path: '', redirectTo: '/simple', pathMatch: 'full'},
-  {path: 'simple', component: SimpleComponent,
-  children: [
-    {path: 'clickevent', component: ClickeventComponent},
-    {path: 'fromarray', component: FromarrayComponent},
-    {path: 'clicktoarray', component: ClicktoarrayComponent},
-    {path: 'randomcolor', component: RandomcolorComponent},
-    {path: 'nameavatar', component: NameavatarComponent},
-    {path: 'datafromevent', component: DatafromeventComponent},
-  ]},
-  {path: 'complex', component: ComplexComponent}
+  {
+    path: 'simple', component: SimpleComponent,
+    children: [
+      {path: 'clickevent', component: ClickeventComponent},
+      {path: 'fromarray', component: FromarrayComponent},
+      {path: 'clicktoarray', component: ClicktoarrayComponent},
+      {path: 'randomcolor', component: RandomcolorComponent},
+      {path: 'nameavatar', component: NameavatarComponent},
+      {path: 'datafromevent', component: DatafromeventComponent},
+    ]
+  },
+  {
+    path: 'complex', component: ComplexComponent,
+    children: [
+      {path: 'concatevents', component: ConcateventsComponent}
+    ]
+  }
 ];
 
 @NgModule({
