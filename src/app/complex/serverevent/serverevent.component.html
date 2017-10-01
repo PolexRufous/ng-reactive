@@ -1,0 +1,16 @@
+<h4>
+  Server event example!
+</h4>
+<div style="width: 30vw; float: left; text-align: center">
+  <h4>All</h4>
+  <table *ngFor="let one of all">
+    <tr>
+      <td *ngIf="one.name">
+        {{one.name}}
+      </td>
+      <td *ngIf="one.id">
+        {{one.id}}
+      </td>
+    </tr>
+  </table>
+</div>

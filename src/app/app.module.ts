@@ -13,6 +13,7 @@ import { RandomcolorComponent } from './simple/randomcolor/randomcolor.component
 import { NameavatarComponent } from './simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from './simple/datafromevent/datafromevent.component';
 import { ConcateventsComponent } from './complex/concatevents/concatevents.component';
+import { ServereventComponent } from './complex/serverevent/serverevent.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ConcateventsComponent } from './complex/concatevents/concatevents.compo
     RandomcolorComponent,
     NameavatarComponent,
     DatafromeventComponent,
-    ConcateventsComponent
+    ConcateventsComponent,
+    ServereventComponent
   ],
   imports: [
     BrowserModule,
