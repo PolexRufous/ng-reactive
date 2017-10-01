@@ -14,6 +14,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
   private unisexSubscription: Subscription;
   private unisexStream: Observable<Person>;
   private eventSource: EventSourcePolyfill;
+  private isEventSourceOpen = false;
 
   all: Array<Person> = [];
 
@@ -40,10 +41,17 @@ export class ServereventComponent implements OnInit, OnDestroy {
         person.name = data.name;
         return person;
       })
-      .subscribe(person => {this.all.push(person); console.log(person); },
+      .subscribe(
+        person => {
+          if (!!person.id) {
+            this.all.push(person);
+          } else {
+            this.eventSource.close();
+          }
+        },
         error => console.error('Error'),
         () => console.log('Complete')
-        );
+      );
   }
 
   ngOnDestroy(): void {
