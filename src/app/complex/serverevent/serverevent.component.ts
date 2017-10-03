@@ -1,4 +1,4 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { Person } from '../concatevents/person';
@@ -14,11 +14,10 @@ export class ServereventComponent implements OnInit, OnDestroy {
   private unisexSubscription: Subscription;
   private unisexStream: Observable<Person>;
   private eventSource: EventSourcePolyfill;
-  private isEventSourceOpen = false;
 
   all: Array<Person> = [];
 
-  constructor(private zone: NgZone) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -28,27 +27,19 @@ export class ServereventComponent implements OnInit, OnDestroy {
     this.eventSource.onmessage = person => {
       replyStream.next(JSON.parse(person.data));
     };
-    this.eventSource.onopen = () => console.log('Source open');
+    this.eventSource.onopen = () => console.log('Open source');
+    this.eventSource.onerror = error => {
+      replyStream.complete();
+      error.target.close();
+    };
     this.unisexStream = replyStream.asObservable();
     this.subscribeAll();
   }
 
   subscribeAll() {
     this.unisexSubscription = this.unisexStream
-      .map(data => {
-        const person: Person = new Person();
-        person.id = data['id'];
-        person.name = data.name;
-        return person;
-      })
       .subscribe(
-        person => {
-          if (!!person.id) {
-            this.all.push(person);
-          } else {
-            this.eventSource.close();
-          }
-        },
+        person => this.all.push(person),
         error => console.error('Error'),
         () => console.log('Complete')
       );
@@ -56,5 +47,8 @@ export class ServereventComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unisexSubscription.unsubscribe();
+    if (this.eventSource && this.eventSource.readyState !== EventSourcePolyfill.prototype.CLOSED) {
+      this.eventSource.close();
+    }
   }
 }

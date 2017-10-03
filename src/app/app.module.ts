@@ -14,6 +14,7 @@ import { NameavatarComponent } from './simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from './simple/datafromevent/datafromevent.component';
 import { ConcateventsComponent } from './complex/concatevents/concatevents.component';
 import { ServereventComponent } from './complex/serverevent/serverevent.component';
+import { MdProgressBarModule, MdProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { ServereventComponent } from './complex/serverevent/serverevent.componen
   imports: [
     BrowserModule,
     RouterModule,
-    RoutesModule
+    RoutesModule,
+    MdProgressSpinnerModule,
+    MdProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

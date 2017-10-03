@@ -1,16 +1,41 @@
+<ng-template #elseSpinner>
+  <md-progress-bar style="width:100%;"
+              [color]="'warn'"
+              [mode]="'indeterminate'">
+  </md-progress-bar>
+</ng-template>
 <h4>
   Server event example!
 </h4>
-<div style="width: 30vw; float: left; text-align: center">
+<div style="width: 40vw; text-align: center">
+  <h4 *ngIf="eventSource">
+    EventSource state - {{eventSource.readyState}}
+    <br>
+    EventSource url - {{eventSource.url}}
+  </h4>
   <h4>All</h4>
-  <table *ngFor="let one of all">
+  <table style="width: 30vw;">
     <tr>
-      <td *ngIf="one.name">
-        {{one.name}}
-      </td>
+      <th>
+        ID
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr *ngFor="let one of all">
       <td *ngIf="one.id">
         {{one.id}}
       </td>
+      <td *ngIf="one.name; else elseSpinner">
+        {{one.name}}
+      </td>
     </tr>
   </table>
+  <div *ngIf="eventSource && eventSource.readyState === eventSource.OPEN">
+    <md-spinner style="width:30px; height: 30px;"
+      [color]="'accent'"
+      [mode]="'indeterminate'">
+    </md-spinner>
+  </div>
 </div>
