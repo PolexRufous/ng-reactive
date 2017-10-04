@@ -56,15 +56,17 @@ export class ServereventComponent implements OnInit, OnDestroy {
 
   proceedPerson(person: Person) {
     this.all.push(person);
-    const localSubsctiption: Subscription = this.http.get('http://localhost:8080/persons/' + person.id)
-      .subscribe(
-        detailed => {
-          const detailedPerson: Person = JSON.parse(detailed['_body']);
-          person.name = detailedPerson.name;
-          person.gender = detailedPerson.gender;
-          localSubsctiption.unsubscribe();
-        }
-      );
+    this.http.get('http://localhost:8080/persons/' + person.id)
+      .toPromise()
+      .then(response =>  response.json() as Person)
+      .then(detailedPerson => {
+        person.name = detailedPerson.name;
+        person.gender = detailedPerson.gender;
+      })
+      .catch(error => {
+        console.error(error);
+        person.name = 'Undefined';
+      });
   }
 
 }
