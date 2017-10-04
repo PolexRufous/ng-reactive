@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { Person } from '../concatevents/person';
 import { EventSourcePolyfill } from 'ng-event-source';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-serverevent',
@@ -17,7 +18,8 @@ export class ServereventComponent implements OnInit, OnDestroy {
 
   all: Array<Person> = [];
 
-  constructor() {
+  constructor(private http: Http,
+              private zone: NgZone) {
   }
 
   ngOnInit() {
@@ -39,7 +41,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
   subscribeAll() {
     this.unisexSubscription = this.unisexStream
       .subscribe(
-        person => this.all.push(person),
+        person => this.zone.run(() => this.proceedPerson(person)),
         error => console.error('Error'),
         () => console.log('Complete')
       );
@@ -51,4 +53,18 @@ export class ServereventComponent implements OnInit, OnDestroy {
       this.eventSource.close();
     }
   }
+
+  proceedPerson(person: Person) {
+    this.all.push(person);
+    const localSubsctiption: Subscription = this.http.get('http://localhost:8080/persons/' + person.id)
+      .subscribe(
+        detailed => {
+          const detailedPerson: Person = JSON.parse(detailed['_body']);
+          person.name = detailedPerson.name;
+          person.gender = detailedPerson.gender;
+          localSubsctiption.unsubscribe();
+        }
+      );
+  }
+
 }

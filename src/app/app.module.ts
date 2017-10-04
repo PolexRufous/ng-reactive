@@ -15,6 +15,7 @@ import { DatafromeventComponent } from './simple/datafromevent/datafromevent.com
 import { ConcateventsComponent } from './complex/concatevents/concatevents.component';
 import { ServereventComponent } from './complex/serverevent/serverevent.component';
 import { MdProgressBarModule, MdProgressSpinnerModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MdProgressBarModule, MdProgressSpinnerModule } from '@angular/material'
     RouterModule,
     RoutesModule,
     MdProgressSpinnerModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
