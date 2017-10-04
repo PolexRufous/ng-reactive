@@ -16,14 +16,14 @@ export class ServereventComponent implements OnInit, OnDestroy {
   private unisexStream: Observable<Person>;
   private eventSource: EventSourcePolyfill;
 
-  all: Array<Person> = [];
+  private all: Array<Person> = [];
 
   constructor(private http: Http,
               private zone: NgZone) {
   }
 
   ngOnInit() {
-    this.eventSource = new EventSourcePolyfill('http://localhost:8081/persons');
+    this.eventSource = new EventSourcePolyfill('http://localhost:8091/persons');
     const replyStream = new ReplaySubject(3);
 
     this.eventSource.onmessage = person => {
@@ -41,7 +41,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
   subscribeAll() {
     this.unisexSubscription = this.unisexStream
       .subscribe(
-        person => this.zone.run(() => this.proceedPerson(person)),
+        person => this.zone.run(() => this.proceedPersonUpdate(person)),
         error => console.error('Error'),
         () => console.log('Complete')
       );
@@ -54,19 +54,21 @@ export class ServereventComponent implements OnInit, OnDestroy {
     }
   }
 
-  proceedPerson(person: Person) {
+  proceedPersonUpdate(person: Person) {
     this.all.push(person);
-    this.http.get('http://localhost:8080/persons/' + person.id)
-      .toPromise()
-      .then(response =>  response.json() as Person)
-      .then(detailedPerson => {
-        person.name = detailedPerson.name;
-        person.gender = detailedPerson.gender;
-      })
-      .catch(error => {
-        console.error(error);
-        person.name = 'Undefined';
-      });
+    this.http.get('http://localhost:8091/persons/' + person.id)
+      .map(response => response.json() as Person)
+      .subscribe(
+        detailedPerson => {
+          person.name = detailedPerson.name;
+          person.gender = detailedPerson.gender;
+        },
+        error => {
+          console.error(error);
+          person.name = 'Undefined';
+        },
+        () => console.log('Person update finish')
+      );
   }
 
 }
