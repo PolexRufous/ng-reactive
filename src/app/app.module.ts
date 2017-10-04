@@ -16,6 +16,7 @@ import { ConcateventsComponent } from './complex/concatevents/concatevents.compo
 import { ServereventComponent } from './complex/serverevent/serverevent.component';
 import { MdProgressBarModule, MdProgressSpinnerModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
+import { TerminatedserverComponent } from './complex/terminatedserver/terminatedserver.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpModule } from '@angular/http';
     NameavatarComponent,
     DatafromeventComponent,
     ConcateventsComponent,
-    ServereventComponent
+    ServereventComponent,
+    TerminatedserverComponent
   ],
   imports: [
     BrowserModule,

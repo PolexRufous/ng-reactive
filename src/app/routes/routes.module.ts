@@ -11,6 +11,7 @@ import { NameavatarComponent } from '../simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from '../simple/datafromevent/datafromevent.component';
 import { ConcateventsComponent } from '../complex/concatevents/concatevents.component';
 import { ServereventComponent } from '../complex/serverevent/serverevent.component';
+import { TerminatedserverComponent } from '../complex/terminatedserver/terminatedserver.component';
 
 const routes = [
   {path: '', redirectTo: '/simple', pathMatch: 'full'},
@@ -29,7 +30,8 @@ const routes = [
     path: 'complex', component: ComplexComponent,
     children: [
       {path: 'concatevents', component: ConcateventsComponent},
-      {path: 'serverevent', component: ServereventComponent}
+      {path: 'serverevent', component: ServereventComponent},
+      {path: 'terminatedserver', component: TerminatedserverComponent}
     ]
   }
 ];
