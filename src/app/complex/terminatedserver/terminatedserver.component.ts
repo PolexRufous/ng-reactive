@@ -55,7 +55,7 @@ export class TerminatedserverComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.unisexSubscription.unsubscribe();
-    if (this.eventSource && this.eventSource.readyState !== 2) {
+    if (this.eventSource && this.eventSource.readyState !== 1) {
       this.eventSource.close();
     }
   }
