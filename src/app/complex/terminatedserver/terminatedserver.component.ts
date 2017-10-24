@@ -32,6 +32,7 @@ export class TerminatedserverComponent implements OnInit, OnDestroy {
         if (personParsed && personParsed.id) {
           this.zone.run(() => replyStream.next(personParsed));
         } else {
+          this.zone.run(() => replyStream.complete());
           this.eventSource.close();
         }
       };
