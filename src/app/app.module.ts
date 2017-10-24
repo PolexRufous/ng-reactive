@@ -14,7 +14,7 @@ import { NameavatarComponent } from './simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from './simple/datafromevent/datafromevent.component';
 import { ConcateventsComponent } from './complex/concatevents/concatevents.component';
 import { ServereventComponent } from './complex/serverevent/serverevent.component';
-import { MdProgressBarModule, MdProgressSpinnerModule } from '@angular/material';
+import { MdProgressBarModule, MdProgressSpinnerModule, MdToolbarModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { TerminatedserverComponent } from './complex/terminatedserver/terminatedserver.component';
 
@@ -39,6 +39,7 @@ import { TerminatedserverComponent } from './complex/terminatedserver/terminated
     RoutesModule,
     MdProgressSpinnerModule,
     MdProgressBarModule,
+    MdToolbarModule,
     HttpModule
   ],
   providers: [],

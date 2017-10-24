@@ -1,11 +1,12 @@
-<h3>
+<h2 class="pretty-font h-color part-header">
   Complex examples!
-</h3>
-<a routerLink="concatevents">Event concatenation event</a>
-<br>
-<a routerLink="serverevent">Server event</a>
-<br>
-<a routerLink="terminatedserver">Server event with terminater entry</a>
-<br>
-<br>
-<router-outlet></router-outlet>
+</h2>
+<md-toolbar>
+  <span class="component-link"><a routerLink="concatevents">Event concatenation event</a></span>
+  <span class="component-link"><a routerLink="serverevent">Server event</a></span>
+  <span class="component-link"><a routerLink="terminatedserver">Server event with the termination entry</a></span>
+</md-toolbar>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
