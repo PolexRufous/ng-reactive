@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-$header-color: maroon;
-$comment-color: #3f51b5;
+$header-color: #e4003a;
+$comment-color: #009fe3;
 * {
   box-sizing: border-box;
 }
@@ -27,6 +27,7 @@ $comment-color: #3f51b5;
 .base-links {
   font-size: 1.3em;
   text-decoration: none;
+  padding-left: 6%;
 }
 
 .component-link {
