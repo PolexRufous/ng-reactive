@@ -17,6 +17,8 @@ import { ServereventComponent } from './complex/serverevent/serverevent.componen
 import { MdProgressBarModule, MdProgressSpinnerModule, MdToolbarModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { TerminatedserverComponent } from './complex/terminatedserver/terminatedserver.component';
+import { StreamsComponent } from './streams/streams/streams.component';
+import { DealsComponent } from './streams/deals/deals.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { TerminatedserverComponent } from './complex/terminatedserver/terminated
     DatafromeventComponent,
     ConcateventsComponent,
     ServereventComponent,
-    TerminatedserverComponent
+    TerminatedserverComponent,
+    StreamsComponent,
+    DealsComponent
   ],
   imports: [
     BrowserModule,

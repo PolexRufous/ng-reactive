@@ -12,6 +12,8 @@ import { DatafromeventComponent } from '../simple/datafromevent/datafromevent.co
 import { ConcateventsComponent } from '../complex/concatevents/concatevents.component';
 import { ServereventComponent } from '../complex/serverevent/serverevent.component';
 import { TerminatedserverComponent } from '../complex/terminatedserver/terminatedserver.component';
+import { StreamsComponent } from '../streams/streams/streams.component';
+import { DealsComponent } from '../streams/deals/deals.component';
 
 const routes = [
   {path: '', redirectTo: '/simple', pathMatch: 'full'},
@@ -32,6 +34,12 @@ const routes = [
       {path: 'concatevents', component: ConcateventsComponent},
       {path: 'serverevent', component: ServereventComponent},
       {path: 'terminatedserver', component: TerminatedserverComponent}
+    ]
+  },
+  {
+    path: 'streams', component: StreamsComponent,
+    children: [
+      {path: 'deals', component: DealsComponent}
     ]
   }
 ];

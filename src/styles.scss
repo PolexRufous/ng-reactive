@@ -24,10 +24,12 @@ $comment-color: #009fe3;
   color: $comment-color;
 }
 
-.base-links {
+.base-links-cover {
   font-size: 1.3em;
-  text-decoration: none;
   padding-left: 6%;
+  .base-links {
+    text-decoration: none;
+  }
 }
 
 .component-link {
