@@ -19,6 +19,7 @@ import { HttpModule } from '@angular/http';
 import { TerminatedserverComponent } from './complex/terminatedserver/terminatedserver.component';
 import { StreamsComponent } from './streams/streams/streams.component';
 import { DealsComponent } from './streams/deals/deals.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { DealsComponent } from './streams/deals/deals.component';
     MdProgressSpinnerModule,
     MdProgressBarModule,
     MdToolbarModule,
-    HttpModule
+    HttpModule,
+    ChartsModule,
+    MdProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

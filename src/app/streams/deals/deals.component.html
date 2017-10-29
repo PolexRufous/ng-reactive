@@ -1,3 +1,21 @@
 <p>
-  deals works!
+  Watch prices!
 </p>
+<div style="display: block; width: 400px; height: 400px;">
+  <canvas baseChart width="400" height="300"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType">
+
+  </canvas>
+</div>
+<md-progress-bar
+  [color]="'primary'"
+  [mode]="'determine'"
+  [value]="progressValue"
+
+></md-progress-bar>
+Percent of max price: {{averagePrice}}%
