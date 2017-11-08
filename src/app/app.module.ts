@@ -14,7 +14,7 @@ import { NameavatarComponent } from './simple/nameavatar/nameavatar.component';
 import { DatafromeventComponent } from './simple/datafromevent/datafromevent.component';
 import { ConcateventsComponent } from './complex/concatevents/concatevents.component';
 import { ServereventComponent } from './complex/serverevent/serverevent.component';
-import { MdProgressBarModule, MdProgressSpinnerModule, MdToolbarModule } from '@angular/material';
+import { MdProgressBarModule, MdProgressSpinnerModule, MdTableModule, MdToolbarModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { TerminatedserverComponent } from './complex/terminatedserver/terminatedserver.component';
 import { StreamsComponent } from './streams/streams/streams.component';
@@ -47,7 +47,8 @@ import {ChartsModule} from 'ng2-charts';
     MdToolbarModule,
     HttpModule,
     ChartsModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

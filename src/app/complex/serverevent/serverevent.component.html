@@ -8,12 +8,7 @@
   Server event example!
 </h4>
 <div style="width: 40vw; text-align: center">
-  <h4 *ngIf="eventSource">
-    EventSource state - {{eventSource.readyState}}
-    <br>
-    EventSource url - {{eventSource.url}}
-  </h4>
-  <h4>All</h4>
+  <h4>Heroes</h4>
   <table style="width: 30vw;">
     <tr>
       <th>
@@ -22,6 +17,12 @@
       <th>
         Name
       </th>
+      <th>
+        Power
+      </th>
+      <th>
+        Descriptor
+      </th>
     </tr>
     <tr *ngFor="let one of all">
       <td *ngIf="one.id">
@@ -29,6 +30,12 @@
       </td>
       <td *ngIf="one.name; else elseSpinner">
         {{one.name}}
+      </td>
+      <td *ngIf="one.name; else elseSpinner">
+        {{one.power}}
+      </td>
+      <td *ngIf="one.name; else elseSpinner">
+        {{one.descriptor}}
       </td>
     </tr>
     <tr *ngIf="eventSource && eventSource.readyState === eventSource.OPEN">

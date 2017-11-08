@@ -1,10 +1,10 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
-import { Person } from '../concatevents/person';
 import { EventSourcePolyfill } from 'ng-event-source';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Http } from '@angular/http';
+import { Hero } from '../../shared/Hero';
 
 @Component({
   selector: 'app-serverevent',
@@ -13,10 +13,10 @@ import { Http } from '@angular/http';
 })
 export class ServereventComponent implements OnInit, OnDestroy {
   private unisexSubscription: Subscription;
-  private unisexStream: Observable<Person>;
+  private unisexStream: Observable<Hero>;
   private eventSource: EventSourcePolyfill;
 
-  private all: Array<Person> = [];
+  private all: Array<Hero> = [];
 
   constructor(private http: Http,
               private zone: NgZone) {
@@ -26,8 +26,8 @@ export class ServereventComponent implements OnInit, OnDestroy {
     this.eventSource = new EventSourcePolyfill('http://localhost:8091/persons');
     const replyStream = new ReplaySubject(3);
 
-    this.eventSource.onmessage = person => {
-      replyStream.next(JSON.parse(person.data));
+    this.eventSource.onmessage = hero => {
+      replyStream.next(JSON.parse(hero.data));
     };
     this.eventSource.onopen = () => console.log('Open source');
     this.eventSource.onerror = error => {
@@ -41,7 +41,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
   subscribeAll() {
     this.unisexSubscription = this.unisexStream
       .subscribe(
-        person => this.zone.run(() => this.proceedPersonUpdate(person)),
+        hero => this.zone.run(() => this.proceedHeroUpdate(hero)),
         error => console.error('Error'),
         () => console.log('Complete')
       );
@@ -54,18 +54,19 @@ export class ServereventComponent implements OnInit, OnDestroy {
     }
   }
 
-  proceedPersonUpdate(person: Person) {
-    this.all.push(person);
-    this.http.get('http://localhost:8091/persons/' + person.id)
-      .map(response => response.json() as Person)
+  proceedHeroUpdate(hero: Hero) {
+    this.all.push(hero);
+    this.http.get('http://localhost:8091/hero/' + hero.id)
+      .map(response => response.json() as Hero)
       .subscribe(
-        detailedPerson => {
-          person.name = detailedPerson.name;
-          person.gender = detailedPerson.gender;
+        detailedHero => {
+          hero.name = detailedHero.name;
+          hero.power = detailedHero.power;
+          hero.descriptor = detailedHero.descriptor;
         },
         error => {
           console.error(error);
-          person.name = 'Undefined';
+          hero.name = 'Undefined';
         },
         () => console.log('Person update finish')
       );
