@@ -4,6 +4,8 @@ $header-color: #e4003a;
 $comment-color: #009fe3;
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 .div-half {
   float: left;
@@ -25,7 +27,7 @@ $comment-color: #009fe3;
 }
 
 .base-links-cover {
-  font-size: 1.3em;
+  font-size: 1.1em;
   padding-left: 6%;
   .base-links {
     text-decoration: none;

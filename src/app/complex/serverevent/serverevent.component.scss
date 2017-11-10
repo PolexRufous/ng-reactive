@@ -1,0 +1,14 @@
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #009fe3;
+
+  th, td {
+    width: 25%;
+    border: 1px solid #009fe3;
+  }
+
+  tr:nth-child(even) {
+    background: rgba(0, 159, 227, 0.1);
+  }
+}

@@ -1,15 +1,17 @@
 <ng-template #elseSpinner>
-  <md-progress-bar style="width:100%;"
-              [color]="'warn'"
-              [mode]="'indeterminate'">
-  </md-progress-bar>
+  <td colspan="3">
+    <md-progress-bar style="width:100%;"
+                     [color]="'warn'"
+                     [mode]="'indeterminate'">
+    </md-progress-bar>
+  </td>
 </ng-template>
 <h4>
   Server event example!
 </h4>
-<div style="width: 40vw; text-align: center">
+<div style="text-align: center">
   <h4>Heroes</h4>
-  <table style="width: 30vw;">
+  <table class="result-table">
     <tr>
       <th>
         ID
@@ -31,15 +33,15 @@
       <td *ngIf="one.name; else elseSpinner">
         {{one.name}}
       </td>
-      <td *ngIf="one.name; else elseSpinner">
+      <td *ngIf="one.name">
         {{one.power}}
       </td>
-      <td *ngIf="one.name; else elseSpinner">
+      <td *ngIf="one.name">
         {{one.descriptor}}
       </td>
     </tr>
     <tr *ngIf="eventSource && eventSource.readyState === eventSource.OPEN">
-      <td>
+      <td style="padding-left: 10%">
         <md-spinner style="width:30px; height: 30px;"
                     [color]="'accent'"
                     [mode]="'indeterminate'">
