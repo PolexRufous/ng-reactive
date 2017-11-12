@@ -1,21 +1,8 @@
-<p>
-  Watch prices!
-</p>
-<div style="display: block; width: 400px; height: 400px;">
-  <canvas baseChart width="400" height="300"
-          [datasets]="lineChartData"
-          [labels]="lineChartLabels"
-          [options]="lineChartOptions"
-          [colors]="lineChartColors"
-          [legend]="lineChartLegend"
-          [chartType]="lineChartType">
-
-  </canvas>
+<div style="display: block; width: 50%; height: 400px; float: left;">
+  <app-coal [deals]="dealStream"></app-coal>
 </div>
-<md-progress-bar
-  [color]="'primary'"
-  [mode]="'determine'"
-  [value]="progressValue"
+<div style="display: block; width: 50%; height: 400px; float: left;">
+  <app-leather [deals]="dealStream"></app-leather>
+</div>
 
-></md-progress-bar>
-Percent of max price: {{averagePrice}}%
+<hr style="clear: both;">

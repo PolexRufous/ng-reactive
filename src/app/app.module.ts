@@ -20,6 +20,9 @@ import { TerminatedserverComponent } from './complex/terminatedserver/terminated
 import { StreamsComponent } from './streams/streams/streams.component';
 import { DealsComponent } from './streams/deals/deals.component';
 import {ChartsModule} from 'ng2-charts';
+import { DealService } from './streams/deals/services/deal.service';
+import { LeatherComponent } from './streams/deals/leather/leather.component';
+import { CoalComponent } from './streams/deals/coal/coal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import {ChartsModule} from 'ng2-charts';
     ServereventComponent,
     TerminatedserverComponent,
     StreamsComponent,
-    DealsComponent
+    DealsComponent,
+    LeatherComponent,
+    CoalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,7 @@ import {ChartsModule} from 'ng2-charts';
     MdProgressBarModule,
     MdTableModule
   ],
-  providers: [],
+  providers: [DealService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

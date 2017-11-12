@@ -5,11 +5,13 @@ import { EventSourcePolyfill } from 'ng-event-source';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Http } from '@angular/http';
 import { Hero } from '../../shared/Hero';
+import { DealService } from '../../streams/deals/services/deal.service';
 
 @Component({
   selector: 'app-serverevent',
   templateUrl: './serverevent.component.html',
-  styleUrls: ['./serverevent.component.scss']
+  styleUrls: ['./serverevent.component.scss'],
+  providers: [ DealService ]
 })
 export class ServereventComponent implements OnInit, OnDestroy {
   private unisexSubscription: Subscription;
