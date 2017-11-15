@@ -59,8 +59,9 @@ export class ChartWriter implements OnInit, OnDestroy {
     for (let i = this.stockLength; i > 0; i--) {
       this.lineChartLabels.push(i);
     }
-    this.dealSubscription = this.dealsStream.subscribe(
-      deal => {
+
+    this.dealSubscription = this.dealsStream
+      .subscribe(deal => {
         this.zone.run(() => {
           this.pricesProduct.push(Math.floor(deal.price));
           this.averagePrice = Math.floor(
@@ -71,10 +72,7 @@ export class ChartWriter implements OnInit, OnDestroy {
             this.averagePrices.shift();
           }
           this.pricesGraphicsProduct = this.pricesProduct;
-          this.lineChartData = [
-            {data: this.averagePrices, label: this.averagePriceLabel},
-            {data: this.pricesGraphicsProduct, label: this.productPriceLabel}
-          ];
+          this.updateChartData();
         });
       }
     );
@@ -89,6 +87,7 @@ export class ChartWriter implements OnInit, OnDestroy {
     for (let i = 0; i < this.stockLength; i++) {
       this.lineChartLabels.push(i);
     }
+
     this.dealSubscription = this.dealsStream
       .map(array => array.map(deal => Math.floor(deal.price)))
       .subscribe(
@@ -96,20 +95,23 @@ export class ChartWriter implements OnInit, OnDestroy {
         this.zone.run(() => {
           this.pricesGraphicsProduct = dealPrices;
           this.averagePrices = [];
-          this.lineChartLabels = [];
           let counter = 0;
           dealPrices.forEach((price, index) => {
             counter += price;
             const average = counter / (index + 1);
             this.averagePrices.push(average);
           });
-          this.lineChartData = [
-            {data: this.averagePrices, label: this.averagePriceLabel},
-            {data: this.pricesGraphicsProduct, label: this.productPriceLabel}
-          ];
+          this.updateChartData();
         });
       }
     );
+  }
+
+  updateChartData() {
+    this.lineChartData = [
+      {data: this.averagePrices, label: this.averagePriceLabel},
+      {data: this.pricesGraphicsProduct, label: this.productPriceLabel}
+    ];
   }
 
   ngOnDestroy(): void {
