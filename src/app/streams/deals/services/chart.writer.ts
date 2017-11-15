@@ -9,7 +9,7 @@ export class ChartWriter implements OnInit, OnDestroy {
   protected averagePriceLabel = 'Average Price';
   protected productPriceLabel = 'Product deal price';
   protected stockLength = 20;
-  protected dealsStream: Observable<Deal>;
+  protected dealsStream: Observable<Deal> | Observable<Array<Deal>>;
   protected dealSubscription: Subscription;
   protected averagePrice = 0;
 
@@ -22,7 +22,7 @@ export class ChartWriter implements OnInit, OnDestroy {
   protected lineChartData: Array<any> = [
     {data: this.averagePrices, label: this.averagePriceLabel},
     {data: this.pricesGraphicsProduct, label: this.productPriceLabel}
-  ];;
+  ];
   protected lineChartLabels: Array<any> = [];
   protected lineChartOptions: any = {
     responsive: true
@@ -50,12 +50,14 @@ export class ChartWriter implements OnInit, OnDestroy {
 
   }
 
-  initChart() {
+  initChartOneByOne(dealsStream: Observable<Deal>) {
+    if (!!this.dealsStream) {
+      return;
+    } else {
+      this.dealsStream = dealsStream;
+    }
     for (let i = this.stockLength; i > 0; i--) {
       this.lineChartLabels.push(i);
-    }
-    if (!this.dealsStream) {
-      return;
     }
     this.dealSubscription = this.dealsStream.subscribe(
       deal => {
@@ -69,6 +71,38 @@ export class ChartWriter implements OnInit, OnDestroy {
             this.averagePrices.shift();
           }
           this.pricesGraphicsProduct = this.pricesProduct;
+          this.lineChartData = [
+            {data: this.averagePrices, label: this.averagePriceLabel},
+            {data: this.pricesGraphicsProduct, label: this.productPriceLabel}
+          ];
+        });
+      }
+    );
+  }
+
+  initChartByArray(dealsStream: Observable<Array<Deal>>) {
+    if (!!this.dealsStream) {
+      return;
+    } else {
+      this.dealsStream = dealsStream;
+    }
+    for (let i = 0; i < this.stockLength; i++) {
+      this.lineChartLabels.push(i);
+    }
+    this.dealSubscription = this.dealsStream
+      .map(array => array.map(deal => Math.floor(deal.price)))
+      .subscribe(
+      dealPrices => {
+        this.zone.run(() => {
+          this.pricesGraphicsProduct = dealPrices;
+          this.averagePrices = [];
+          this.lineChartLabels = [];
+          let counter = 0;
+          dealPrices.forEach((price, index) => {
+            counter += price;
+            const average = counter / (index + 1);
+            this.averagePrices.push(average);
+          });
           this.lineChartData = [
             {data: this.averagePrices, label: this.averagePriceLabel},
             {data: this.pricesGraphicsProduct, label: this.productPriceLabel}

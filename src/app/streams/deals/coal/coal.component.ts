@@ -19,10 +19,10 @@ export class CoalComponent extends ChartWriter implements OnInit {
   }
 
   ngOnInit() {
-    this.dealsStream = this.deals
+    const dealsStream: Observable<Deal> = this.deals
       .filter(deal => deal.productType === 'COAL');
 
-    super.initChart();
+    super.initChartOneByOne(dealsStream);
   }
 
   initVariables() {

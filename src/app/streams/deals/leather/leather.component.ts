@@ -1,6 +1,5 @@
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { ChartWriter } from '../services/chart.writer';
-import { DealService } from '../services/deal.service';
 import { Observable } from 'rxjs/Observable';
 import { Deal } from '../../../shared/Deal';
 
@@ -19,15 +18,15 @@ export class LeatherComponent extends ChartWriter implements OnInit {
   }
 
   ngOnInit() {
-    this.dealsStream = this.deals
+    const dealsStream: Observable<Array<Deal>> = this.deals
       .filter(deal => deal.productType === 'LEATHER')
-      .bufferCount(20, 20)
-      .mergeMap(deal => deal);
+      .bufferCount(this.stockLength, this.stockLength);
 
-    super.initChart();
+    super.initChartByArray(dealsStream);
   }
 
   initVariables() {
+    this.stockLength = 20;
     this.averagePriceLabel = 'Average leather price';
     this.productPriceLabel = 'Leather deal price';
   }
