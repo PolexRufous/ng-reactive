@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { ChartWriter } from '../services/chart.writer';
 import { Observable } from 'rxjs/Observable';
-import { Deal } from '../../../shared/Deal';
+import { Deal } from '../../../shared/deal';
 
 @Component({
   selector: 'app-leather',

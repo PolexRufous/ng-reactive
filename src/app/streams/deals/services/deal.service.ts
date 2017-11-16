@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { EventSource } from '../../../complex/terminatedserver/eventsource';
-import { Deal } from '../../../shared/Deal';
+import { Deal } from '../../../shared/deal';
 
 @Injectable()
 export class DealService {

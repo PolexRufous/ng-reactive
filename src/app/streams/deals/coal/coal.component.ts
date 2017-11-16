@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { ChartWriter } from '../services/chart.writer';
 import { DealService } from '../services/deal.service';
-import { Deal } from '../../../shared/Deal';
+import { Deal } from '../../../shared/deal';
 import { Observable } from 'rxjs/Rx';
 
 @Component({

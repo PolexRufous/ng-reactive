@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { EventSourcePolyfill } from 'ng-event-source';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Http } from '@angular/http';
-import { Hero } from '../../shared/Hero';
+import { Hero } from '../../shared/hero';
 import { DealService } from '../../streams/deals/services/deal.service';
 
 @Component({
