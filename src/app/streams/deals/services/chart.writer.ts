@@ -4,7 +4,7 @@ import { Deal } from '../../../shared/deal';
 import { Subscription } from 'rxjs/Subscription';
 
 export class ChartWriter implements OnInit, OnDestroy {
-  constructor(private zone: NgZone) {
+  constructor(protected zone: NgZone) {
   }
 
   protected chartTitle: string;

@@ -18,10 +18,16 @@ export class SugarComponent extends ChartWriter implements OnInit {
   }
 
   ngOnInit() {
-    const dealsStream: Observable<Deal> = this.deals
-      .filter(deal => deal.productType === 'SUGAR');
+    const clickStream: Observable<any> = Observable.fromEvent(document.getElementById('sugar-click'), 'click');
 
-    super.initChartOneByOne(dealsStream);
+    const dealsStream: Observable<Array<Deal>> = this.deals
+      .filter(deal => deal.productType === 'SUGAR')
+      .bufferCount(this.stockLength, this.stockLength);
+
+    const resultStream: Observable<Array<Deal>> = Observable.zip(dealsStream, clickStream)
+      .map(array => array[0]);
+
+    super.initChartByArray(resultStream);
   }
 
 
