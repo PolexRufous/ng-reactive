@@ -26,6 +26,7 @@ export class LeatherComponent extends ChartWriter implements OnInit {
   }
 
   initVariables() {
+    this.chartTitle = 'Leather';
     this.stockLength = 20;
     this.averagePriceLabel = 'Average leather price';
     this.productPriceLabel = 'Leather deal price';

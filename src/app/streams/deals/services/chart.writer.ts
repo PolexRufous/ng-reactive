@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 export class ChartWriter implements OnInit, OnDestroy {
   constructor(private zone: NgZone) {
   }
+
+  protected chartTitle: string;
   protected averagePriceLabel = 'Average Price';
   protected productPriceLabel = 'Product deal price';
   protected stockLength = 20;

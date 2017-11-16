@@ -23,6 +23,7 @@ import {ChartsModule} from 'ng2-charts';
 import { DealService } from './streams/deals/services/deal.service';
 import { LeatherComponent } from './streams/deals/leather/leather.component';
 import { CoalComponent } from './streams/deals/coal/coal.component';
+import { SugarComponent } from './streams/deals/sugar/sugar.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CoalComponent } from './streams/deals/coal/coal.component';
     StreamsComponent,
     DealsComponent,
     LeatherComponent,
-    CoalComponent
+    CoalComponent,
+    SugarComponent
   ],
   imports: [
     BrowserModule,

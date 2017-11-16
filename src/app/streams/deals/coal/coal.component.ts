@@ -26,6 +26,7 @@ export class CoalComponent extends ChartWriter implements OnInit {
   }
 
   initVariables() {
+    this.chartTitle = 'Coal';
     this.averagePriceLabel = 'Average coal price';
     this.productPriceLabel = 'Coal deal price';
   }
