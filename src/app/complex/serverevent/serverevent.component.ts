@@ -1,4 +1,4 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Rx';
 import { EventSourcePolyfill } from 'ng-event-source';
@@ -14,14 +14,13 @@ import { DealService } from '../../streams/deals/services/deal.service';
   providers: [ DealService ]
 })
 export class ServereventComponent implements OnInit, OnDestroy {
-  private unisexSubscription: Subscription;
-  private unisexStream: Observable<Hero>;
+  private heroesSubscription: Subscription;
+  private heroesStream: Observable<Hero>;
   private eventSource: EventSourcePolyfill;
 
-  private all: Array<Hero> = [];
+  private heroes: Array<Hero> = [];
 
-  constructor(private http: Http,
-              private zone: NgZone) {
+  constructor(private http: Http) {
   }
 
   ngOnInit() {
@@ -36,28 +35,28 @@ export class ServereventComponent implements OnInit, OnDestroy {
       replyStream.complete();
       error.target.close();
     };
-    this.unisexStream = replyStream.asObservable();
-    this.subscribeAll();
+    this.heroesStream = replyStream.asObservable();
+    this.subscribeOnHeroes();
   }
 
-  subscribeAll() {
-    this.unisexSubscription = this.unisexStream
+  subscribeOnHeroes() {
+    this.heroesSubscription = this.heroesStream
       .subscribe(
-        hero => this.zone.run(() => this.proceedHeroUpdate(hero)),
+        hero => this.proceedHeroUpdate(hero),
         error => console.error('Error'),
         () => console.log('Complete')
       );
   }
 
   ngOnDestroy(): void {
-    this.unisexSubscription.unsubscribe();
+    this.heroesSubscription.unsubscribe();
     if (this.eventSource && this.eventSource.readyState !== EventSourcePolyfill.prototype.CLOSED) {
       this.eventSource.close();
     }
   }
 
   proceedHeroUpdate(hero: Hero) {
-    this.all.push(hero);
+    this.heroes.push(hero);
     this.http.get('http://localhost:8091/hero/' + hero.id)
       .map(response => response.json() as Hero)
       .subscribe(
@@ -70,7 +69,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
           console.error(error);
           hero.name = 'Undefined';
         },
-        () => console.log('Person update finish')
+        () => console.log('Hero update finish')
       );
   }
 
