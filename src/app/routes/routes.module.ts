@@ -14,6 +14,7 @@ import { ServereventComponent } from '../complex/serverevent/serverevent.compone
 import { TerminatedserverComponent } from '../complex/terminatedserver/terminatedserver.component';
 import { StreamsComponent } from '../streams/streams/streams.component';
 import { DealsComponent } from '../streams/deals/deals.component';
+import {CarsComponent} from '../streams/cars/cars.component';
 
 const routes = [
   {path: '', redirectTo: '/simple', pathMatch: 'full'},
@@ -39,7 +40,8 @@ const routes = [
   {
     path: 'streams', component: StreamsComponent,
     children: [
-      {path: 'deals', component: DealsComponent}
+      {path: 'deals', component: DealsComponent},
+      {path: 'cars', component: CarsComponent}
     ]
   }
 ];

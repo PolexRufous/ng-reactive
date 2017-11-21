@@ -2,6 +2,7 @@ import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { ChartWriter } from '../services/chart.writer';
 import { Observable } from 'rxjs/Rx';
 import { Deal } from '../../../shared/deal';
+import {WebSocketSubject} from 'rxjs/observable/dom/WebSocketSubject';
 
 @Component({
   selector: 'app-sugar',
@@ -26,7 +27,7 @@ export class SugarComponent extends ChartWriter implements OnInit {
 
     const resultStream: Observable<Array<Deal>> = Observable.zip(dealsStream, clickStream)
       .map(array => array[0]);
-
+WebSocketSubject
     super.initChartByArray(resultStream);
   }
 

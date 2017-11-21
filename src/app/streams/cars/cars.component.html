@@ -1,0 +1,50 @@
+<ng-template #elseSpinner>
+  <td colspan="3">
+    <md-progress-bar style="width:100%;"
+                     [color]="'warn'"
+                     [mode]="'indeterminate'">
+    </md-progress-bar>
+  </td>
+</ng-template>
+<h4>
+  Server event example!
+</h4>
+<div style="text-align: center">
+  <h4>Violations</h4>
+  <table class="result-table">
+    <tr>
+      <th>
+        Number
+      </th>
+      <th>
+        Reason
+      </th>
+      <th>
+        Owner first name
+      </th>
+      <th>
+        Owner last name
+      </th>
+      <th>
+        Car registration
+      </th>
+    </tr>
+    <tr *ngFor="let one of violations">
+      <td *ngIf="one.carNumber">
+        {{one.carNumber}}
+      </td>
+      <td *ngIf="one.reason">
+        {{one.reason}}
+      </td>
+      <td *ngIf="one.car && one.car.ownerFirstName; else elseSpinner">
+        {{one.car.ownerFirstName}}
+      </td>
+      <td *ngIf="one.car && one.car.ownerLastName">
+        {{one.car.ownerLastName}}
+      </td>
+      <td *ngIf="one.car && one.car.registrationAddress">
+        {{one.car.registrationAddress}}
+      </td>
+    </tr>
+  </table>
+</div>

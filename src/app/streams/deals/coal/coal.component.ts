@@ -20,7 +20,8 @@ export class CoalComponent extends ChartWriter implements OnInit {
 
   ngOnInit() {
     const dealsStream: Observable<Deal> = this.deals
-      .filter(deal => deal.productType === 'COAL');
+      .filter(deal => deal.productType === 'COAL')
+      .throttleTime(500);
 
     super.initChartOneByOne(dealsStream);
   }
