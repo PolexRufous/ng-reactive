@@ -6,6 +6,8 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Http } from '@angular/http';
 import { Hero } from '../../shared/hero';
 import { DealService } from '../../streams/deals/services/deal.service';
+import { config } from '../../../config/app.config';
+
 
 @Component({
   selector: 'app-serverevent',
@@ -24,7 +26,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.eventSource = new EventSourcePolyfill('http://localhost:8091/persons');
+    this.eventSource = new EventSourcePolyfill(config.host_base + '/persons');
     const replyStream = new ReplaySubject(3);
 
     this.eventSource.onmessage = hero => {
@@ -57,7 +59,7 @@ export class ServereventComponent implements OnInit, OnDestroy {
 
   proceedHeroUpdate(hero: Hero) {
     this.heroes.push(hero);
-    this.http.get('http://localhost:8091/hero/' + hero.id)
+    this.http.get(config.host_base + '/hero/' + hero.id)
       .map(response => response.json() as Hero)
       .subscribe(
         detailedHero => {

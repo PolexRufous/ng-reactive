@@ -4,6 +4,8 @@ import {Subscription} from 'rxjs/Subscription';
 import {CarsService} from './services/cars.service';
 import {Http} from '@angular/http';
 import {Car} from '../../shared/car';
+import { config } from '../../../config/app.config';
+
 
 @Component({
   selector: 'app-cars',
@@ -27,7 +29,7 @@ export class CarsComponent implements OnInit, OnDestroy {
 
   proceedViolation(violation: Violation) {
     this.violations.unshift(violation);
-    this.http.get('http://localhost:8091/car/' + violation.carNumber)
+    this.http.get(config.host_base + '/car/' + violation.carNumber)
       .map(response => response.json() as Car)
       .subscribe(
         car => violation.car = car,

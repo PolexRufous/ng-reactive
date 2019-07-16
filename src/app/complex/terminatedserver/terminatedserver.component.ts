@@ -4,6 +4,7 @@ import { Person } from '../concatevents/person';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { config } from '../../../config/app.config';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class TerminatedserverComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const EventSourceFunc = window['EventSource'];
     if (EventSourceFunc) {
-      this.eventSource = new EventSourceFunc('http://localhost:8071/persons') as EventSource;
+      this.eventSource = new EventSourceFunc(config.host_base + '/persons') as EventSource;
       const replyStream = new ReplaySubject(3);
 
       this.eventSource.onmessage = person => {
