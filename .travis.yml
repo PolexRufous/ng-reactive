@@ -1,4 +1,10 @@
 language: node_js
+addons:
+  sonarcloud:
+    organization: polexrufous
+    token:
+      secure: Kxi20qdanm2nZtg75j3BwTOyRNhRZAXs04QcYmdvA6mYY++OEe76wJiuqGmcU2fWf+XzUXoAEUPiTHZtpVqufOMtCmx6aduzA70++kwzo1kIC9r9Bh19n4L7J0eklEM6qMzhQMaCk5yV1xjsl+LyJCOcaq/uXf7nmFU1k1vujatsATOZhkiQKMe9FTuTli4OAqfSNal8sx+ruU5BMQss9eMcyPlxfajH9E616zdSza4veyLULJy4lmo8/rb4oD/kqqX8i9i9rcTv9FqEFugzRPUrWAnFR9LMtaaT8zk2xlFJQp4AQ2Fgd2epEk7r/xkPIXyJlJzQFbqmk+T5ytiNESpleVVMQMngj+/OfuU9jjertQImDaiJvzsJ1Dau26XbZMDvQvVPhAbXkVFa3iU31OrcHvGPYajn4GiaykfbaQXrn/YHXjEpFJEI/xNQzrUsxb1Xm9z0ZbNzq0PlGji0yFk5eLWrh55dPSZKlrHIFLuxFjqfC7RjQ02bJ+kSbsKvnOyl7/EyTZH7MO1oTWSbcY22lgVccJOgUafvicPEcPmPhDJuO1zi7Gc+ZZ1G7o4uBK2xiUhresVu9LHm8abz1UeG3VGjN+KjiJQTn4Ol9CFRXxU8xAfDniQHpz5yQC909ClTHkveicsWcla69gty2ylBnscC9MHFtMkCwa3qMLk=
+
 deploy:
   provider: heroku
   api_key:
